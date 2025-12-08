@@ -4,46 +4,48 @@ create database Ventas_dulceria;
 
 CREATE TABLE Usuarios (
     id_empleado INT IDENTITY(1,1) PRIMARY KEY, -- Int(10) AUTOINCREMENT PK
-    id_rol INT,                                -- FK
-    id_empresa INT,                            -- FK
-    id_sucursal INT,                           -- FK
+    id_rol INT NOT NULL,                                -- FK
+    id_empresa INT NOT NULL,                            -- FK
+    id_sucursal INT,                           -- Puede ser NULL si es admin global
     
+    -- Datos personales
     nom VARCHAR(150) NOT NULL,
     app VARCHAR(150) NOT NULL,
-    rfc VARCHAR(150) NOT NULL,                 -- Nota: El RFC real suele ser de 13 chars
-    telefono VARCHAR(20) NOT NULL,
-    correo VARCHAR(20) NOT NULL,               -- Nota: 20 caracteres es muy corto para emails
+    rfc VARCHAR(13) NOT NULL,               
+    telefono VARCHAR(10) NOT NULL,
+    correo VARCHAR(40) NOT NULL,            
     
+    -- Control de sistema
     type TINYINT NULL,                         -- Int(1) adaptado a TinyInt
-    active BIT,                                -- Bit(1)
+    active BIT DEFAULT 1,                      -- 1 = Activo, 0 = Inactivo.
+    clave_usuario VARCHAR(50) NOT NULL,        -- Tomar la primeras iniciales de su nombre y el apellido
     
-    clave_usuario VARCHAR(50) NOT NULL,
+    -- Auditoría
     clave_usuario_u VARCHAR(50) NOT NULL,
-    
-    Create_user_time DATETIME,
-    Create_user_date DATETIME                  -- Nota: Podría ser redundante si usas time
+    Create_user_date DATE DEFAULT CAST (GETDATE() AS DATE), -- Guarda fecha y hora juntas automáticamente
+    Create_user_time TIME(0) DEFAULT CAST (GETDATE() AS TIME(0) -- Nota: Podría ser redundante si usas time
 );
 
 CREATE TABLE Empleado (
     id_empleado INT IDENTITY(1,1) PRIMARY KEY,  -- PK, Auto-incrementable
-    id_rol INT,                                 -- FK
-    id_empresa INT,                             -- FK
+    id_rol INT NOT NULL,                                 -- FK
+    id_empresa INT NOT NULL,                             -- FK
     id_sucursal INT,                            -- FK
     
-    nom VARCHAR(150) NOT NULL,
-    app VARCHAR(150) NOT NULL,
-    rfc VARCHAR(150) NOT NULL,
-    telefono VARCHAR(20) NOT NULL,
-    correo VARCHAR(20) NOT NULL,
+    nombre_empleado VARCHAR(150) NOT NULL,
+    apellido_p_e VARCHAR(150) NOT NULL,
+    apellido_m_e VARCHAR(150) NOT NULL,
+    rfc VARCHAR(13) NOT NULL,
+    telefono VARCHAR(10) NOT NULL,
+    correo VARCHAR(40) NOT NULL,
     
     pass_user VARCHAR(150) NOT NULL,           
     type TINYINT NULL,
     active BIT,
     
     clave_usuario_u VARCHAR(50) NOT NULL,
-    
-    Create_user_time DATETIME,
-    Create_user_date DATETIME
+    Create_user_date DATE DEFAULT CAST (GETDATE() AS DATE),
+    Create_user_time TIME(0) DEFAULT CAST (GETDATE() AS TIME(0)
 );
 
 CREATE TABLE DetalleAlerta (
