@@ -13,7 +13,7 @@ CREATE TABLE Modulos (
 	editar_mod BIT DEFAULT 0,
 	eliminar_mod BIT DEFAULT 0,
 
-	-- auditoría
+	-- auditoria
 	clave_usuario_u VARCHAR(50) NOT NULL,
     create_user_date DATE DEFAULT CAST (GETDATE() AS DATE),
     create_user_time TIME(0) DEFAULT CAST (GETDATE() AS TIME(0),
@@ -33,7 +33,7 @@ CREATE TABLE Submodulos (
 	editar_sub BIT DEFAULT 0,
 	eliminar_sub BIT DEFAULT 0,
 
-	-- auditoría
+	-- auditoria
 	clave_usuario_u VARCHAR(50) NOT NULL,
     create_user_date DATE DEFAULT CAST (GETDATE() AS DATE),
     create_user_time TIME(0) DEFAULT CAST (GETDATE() AS TIME(0),

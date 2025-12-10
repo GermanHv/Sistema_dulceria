@@ -13,7 +13,8 @@ CREATE TABLE Usuarios (
     app VARCHAR(150) NOT NULL,
     rfc VARCHAR(13) NOT NULL,               
     telefono VARCHAR(10) NOT NULL,
-    correo VARCHAR(40) NOT NULL,            
+    correo VARCHAR(40) NOT NULL,     
+    pass_user VARCHAR(150) NOT NULL,          
     
     -- Control de sistema
     type TINYINT NULL,                         -- Int(1) adaptado a TinyInt
@@ -41,9 +42,8 @@ CREATE TABLE Empleado (
     rfc VARCHAR(13) NOT NULL,
     telefono VARCHAR(10) NOT NULL,
     correo VARCHAR(40) NOT NULL,
-    
-    pass_user VARCHAR(150) NOT NULL,           
-    type TINYINT NULL,
+            
+    tipo TINYINT NULL,
     active BIT,
     
     clave_usuario_u VARCHAR(50) NOT NULL,
