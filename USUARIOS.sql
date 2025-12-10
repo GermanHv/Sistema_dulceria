@@ -3,7 +3,7 @@ create database Ventas_dulceria;
 /*Modulos de usuarios*/
 
 CREATE TABLE Usuarios (
-    id_empleado INT IDENTITY(1,1) PRIMARY KEY, -- Int(10) AUTOINCREMENT PK
+    id_usuario INT IDENTITY(1,1) NOT NULL, -- Int(10) AUTOINCREMENT PK
     id_rol INT NOT NULL,                                -- FK
     id_empresa INT NOT NULL,                            -- FK
     id_sucursal INT,                           -- Puede ser NULL si es admin global
@@ -23,11 +23,14 @@ CREATE TABLE Usuarios (
     -- Auditoría
     clave_usuario_u VARCHAR(50) NOT NULL,
     Create_user_date DATE DEFAULT CAST (GETDATE() AS DATE), -- Guarda fecha y hora juntas automáticamente
-    Create_user_time TIME(0) DEFAULT CAST (GETDATE() AS TIME(0) -- Nota: Podría ser redundante si usas time
+    Create_user_time TIME(0) DEFAULT CAST (GETDATE() AS TIME(0), -- Nota: Podría ser redundante si usas time
+
+    -- Definición de la Llave Primaria
+    CONSTRAINT PK_Usuarios PRIMARY KEY (id_usuario)
 );
 
 CREATE TABLE Empleado (
-    id_empleado INT IDENTITY(1,1) PRIMARY KEY,  -- PK, Auto-incrementable
+    id_empleado INT IDENTITY(1,1) NOT NULL,  -- PK, Auto-incrementable
     id_rol INT NOT NULL,                                 -- FK
     id_empresa INT NOT NULL,                             -- FK
     id_sucursal INT,                            -- FK
@@ -45,27 +48,39 @@ CREATE TABLE Empleado (
     
     clave_usuario_u VARCHAR(50) NOT NULL,
     Create_user_date DATE DEFAULT CAST (GETDATE() AS DATE),
-    Create_user_time TIME(0) DEFAULT CAST (GETDATE() AS TIME(0)
+    Create_user_time TIME(0) DEFAULT CAST (GETDATE() AS TIME(0),
+    
+    -- Definición de la Llave Primaria
+    CONSTRAINT PK_Empleado PRIMARY KEY (id_empleado)
 );
 
 CREATE TABLE DetalleAlerta (
-    id_alerta INT IDENTITY(1,1) PRIMARY KEY,   -- Int(11) AUTO_INCREMENT
+    id_alerta INT IDENTITY(1,1) NOT NULL,   -- Int(11) AUTO_INCREMENT
     id_empleado INT NOT NULL,                  -- FK hacia Empleado
-    mensaje_alerta VARCHAR(MAX),               -- 'text' se convierte a VARCHAR(MAX)
+    mensaje_alerta VARCHAR(MAX), 
+    
+    clave_usuario_u VARCHAR(50) NOT NULL,              -- 'text' se convierte a VARCHAR(MAX)
     Create_time DATETIME,
-    Create_date DATETIME
+    Create_date DATETIME,
+
+    -- Definición de la Llave Primaria
+    CONSTRAINT PK_DetalleAlerta PRIMARY KEY (id_alerta)
 );
 
 CREATE TABLE ImgPerfil (
-    Id_img INT IDENTITY(1,1) PRIMARY KEY,      -- Int(10) AUTOINCREMENT
+    id_img INT IDENTITY(1,1) NOT NULL,      -- Int(10) AUTOINCREMENT
     url_img VARCHAR(MAX) NOT NULL,           
     id_empleado_r INT NOT NULL,                -- FK
+    clave_usuario_u VARCHAR(50) NOT NULL,
     Create_time DATETIME,
-    Create_date DATETIME
+    Create_date DATETIME,    
+    
+    -- Definición de la Llave Primaria
+    CONSTRAINT PK_ImgPerfil PRIMARY KEY (id_img)
 );
 
 CREATE TABLE registro_asistencia (
-    id_asistencia INT IDENTITY(1,1) PRIMARY KEY, -- PK Auto-incrementable
+    id_asistencia INT IDENTITY(1,1) NOT NULL, -- PK Auto-incrementable
     id_empleado INT NOT NULL,                    -- FK 
     id_sucursal INT,                             -- FK
     
@@ -78,17 +93,22 @@ CREATE TABLE registro_asistencia (
     
     clave_usuario_u VARCHAR(50) NOT NULL,
     Create_time DATETIME,
-    Create_date DATETIME
+    Create_date DATETIME,
+    -- Definición de la Llave Primaria
+    CONSTRAINT PK_registro_asistencia PRIMARY KEY (id_asistencia)
+    
 );
 
 CREATE TABLE TipoEmpleado (
-    Id_rol INT IDENTITY(1,1) PRIMARY KEY,        -- PK 
-    Id_empleado INT NOT NULL,                    -- FK
+    id_rol INT IDENTITY(1,1) NOT NULL,        -- PK 
+    id_empleado INT NOT NULL,                    -- FK
     nombre_rol VARCHAR(50) NOT NULL,
     descripcion VARCHAR(50) NOT NULL,
     id_modulo INT NOT NULL,                      -- FK
     
     clave_usuario_u VARCHAR(50) NOT NULL,
     Create_time DATETIME,
-    Create_date DATETIME
+    Create_date DATETIME,
+    -- Definición de la Llave Primaria
+    CONSTRAINT PK_TipoEmpleado PRIMARY KEY (id_rol)
 );
