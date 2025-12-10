@@ -64,8 +64,8 @@ CREATE TABLE cuentasBancarias (
     clave_bancaria VARCHAR(20) NOT NULL, 
     nom_banco VARCHAR(150) NOT NULL,
     clave_usuario_u VARCHAR(50) NOT NULL,
-    Create_time DATETIME,
-    Create_date DATETIME,
+    create_time DATETIME,
+    create_date DATETIME,
 
     -- Definición de la Llave Primaria
     CONSTRAINT PK_CuentasBancarias PRIMARY KEY (id_bancaria)
