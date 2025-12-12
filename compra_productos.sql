@@ -2,15 +2,15 @@ CREATE TABLE compra_productos (
     id_cp_solicitud INT IDENTITY(1,1) NOT NULL,
     id_empresa INT NOT NULL,
     id_sucursal INT NOT NULL,
-    id_proveedor INT NOT NULL, 
     cantidad_productos_total INT NOT NULL, 
     IVA_total DECIMAL(10,2) NOT NULL,
     costo_total DECIMAL(10,2) NOT NULL,
 
     -- Auditoría
     clave_usuario_u VARCHAR(50) NOT NULL,
-    Create_time DATETIME NULL,
-    Create_date DATETIME NULL,
+    Create_date DATE DEFAULT CAST(GETDATE() AS DATE),
+    Create_time TIME(0) DEFAULT CAST(GETDATE() AS TIME(0)),
+
     -- Llave Primaria
     CONSTRAINT PK_compra_productos PRIMARY KEY (id_cp_solicitud)
 );
@@ -29,8 +29,9 @@ CREATE TABLE DetalleCompra (
     
     -- Auditoría
     clave_usuario_u VARCHAR(50) NOT NULL,
-    Create_time DATETIME NULL,
-    Create_date DATETIME NULL,
+    Create_date DATE DEFAULT CAST(GETDATE() AS DATE),
+    Create_time TIME(0) DEFAULT CAST(GETDATE() AS TIME(0)),
+
     
     -- Llave Primaria
     CONSTRAINT PK_DetalleCompra PRIMARY KEY (id_dc),
