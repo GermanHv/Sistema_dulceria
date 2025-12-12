@@ -2,7 +2,7 @@ CREATE TABLE Proveedores (
     id_proveedor INT IDENTITY(1,1) NOT NULL,
     nombre_proveedor VARCHAR(150) NOT NULL,
     nombre_contacto VARCHAR(150) NULL, 
-    rfc VARCHAR(150) NOT NULL,
+    rfc_prov VARCHAR(150) NOT NULL,
     telefono VARCHAR(20) NOT NULL,
     correo VARCHAR(50) NOT NULL, 
     
@@ -10,10 +10,10 @@ CREATE TABLE Proveedores (
     dias_entrega_estimado INT NOT NULL, 
     ultima_entrega DATE NULL,
     
-    -- Auditoría
+    -- auditoria
     clave_usuario_u VARCHAR(50) NOT NULL,
-    Create_time DATETIME NULL,
-    Create_date DATETIME NULL,
+    Create_user_date DATE DEFAULT CAST (GETDATE() AS DATE),
+    Create_user_time TIME(0) DEFAULT CAST (GETDATE() AS TIME(0)),
     
     -- Llave Primaria
     CONSTRAINT PK_Proveedores PRIMARY KEY (id_proveedor)
@@ -32,10 +32,10 @@ CREATE TABLE Catalogo (
     costo_unitario DECIMAL(10,2) NOT NULL, -- Costo de compra
     tipounidad VARCHAR(100) NOT NULL, -- Ej: Pieza, Kg, Caja
     
-    -- Auditoría
+    -- auditoria
     clave_usuario_u VARCHAR(50) NOT NULL,
-    Create_time DATETIME NULL,
-    Create_date DATETIME NULL,
+    Create_user_date DATE DEFAULT CAST (GETDATE() AS DATE),
+    Create_user_time TIME(0) DEFAULT CAST (GETDATE() AS TIME(0)),
     
     -- Restricciones
     CONSTRAINT PK_Catalogo PRIMARY KEY (id_producto),
