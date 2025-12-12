@@ -4,9 +4,11 @@ CREATE TABLE Caja (
     id_sucursal INT NOT NULL, -- Marcado como FK en el diagrama
     nombre_caja VARCHAR(150) NOT NULL,
     active BIT, -- Equivalente a Bit(1)
+
+    -- Auditoría
     clave_usuario_u VARCHAR(50) NOT NULL,
-    Create_time DATETIME,
-    Create_date DATETIME,
+    Create_date DATE DEFAULT CAST(GETDATE() AS DATE),
+    Create_time TIME(0) DEFAULT CAST(GETDATE() AS TIME(0)),
     
     -- Definición de la Llave Primaria
     CONSTRAINT PK_Caja PRIMARY KEY (id_caja)
@@ -22,9 +24,11 @@ CREATE TABLE movimientos_caja (
     motivo VARCHAR(50) NOT NULL,
     comprobante VARCHAR(50) NOT NULL,
     hora_movimiento DATETIME,
+
+    -- Auditoría
     clave_usuario_u VARCHAR(50) NOT NULL,
-    Create_time DATETIME,
-    Create_date DATETIME,
+    Create_date DATE DEFAULT CAST(GETDATE() AS DATE),
+    Create_time TIME(0) DEFAULT CAST(GETDATE() AS TIME(0)),
 
     -- Definición de la Llave Primaria
     CONSTRAINT PK_movimientos_caja PRIMARY KEY (id_movimiento)
@@ -42,9 +46,11 @@ CREATE TABLE Corte_caja (
     saldo_final DECIMAL(10,2) NOT NULL,
     saldo_final_sistema DECIMAL(10,2) NOT NULL, -- Oculto al usuario según diagrama
     diferencia DECIMAL(10,2) NOT NULL,
+
+    -- Auditoría
     clave_usuario_u VARCHAR(50) NOT NULL,
-    Create_time DATETIME,
-    Create_date DATETIME,
+    Create_date DATE DEFAULT CAST(GETDATE() AS DATE),
+    Create_time TIME(0) DEFAULT CAST(GETDATE() AS TIME(0)),
 
     -- Definición de la Llave Primaria
     CONSTRAINT PK_Corte_caja PRIMARY KEY (id_corte)
