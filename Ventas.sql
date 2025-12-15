@@ -20,7 +20,6 @@ CREATE TABLE Ventas (
     Create_time TIME(0) DEFAULT CAST(GETDATE() AS TIME(0)),
 
     CONSTRAINT PK_Ventas PRIMARY KEY (id_venta),
-    CONSTRAINT UQ_Folio_Sucursal UNIQUE (id_sucursal, folio_interno)
 );
 
 CREATE TABLE Detalle_Ventas (
