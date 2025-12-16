@@ -1,3 +1,4 @@
+use Ventas_dulceria;
 CREATE TABLE Proveedores (
     id_proveedor INT IDENTITY(1,1) NOT NULL,
     nombre_proveedor VARCHAR(150) NOT NULL,
@@ -19,7 +20,7 @@ CREATE TABLE Proveedores (
     CONSTRAINT PK_Proveedores PRIMARY KEY (id_proveedor)
 );
 
-CREATE TABLE Catalogo (
+CREATE TABLE Catalogo_proveedores (
     id_producto INT IDENTITY(1,1) NOT NULL,
     
     -- Relación con Proveedor (FK)

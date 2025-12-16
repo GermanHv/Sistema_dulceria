@@ -1,7 +1,7 @@
 
 create database Ventas_dulceria;
 /*Modulos de usuarios*/
-
+USE Ventas_dulceria;
 CREATE TABLE Usuarios (
     id_usuario INT IDENTITY(1,1) NOT NULL, -- Int(10) AUTOINCREMENT PK
     id_rol INT NOT NULL,                                -- FK

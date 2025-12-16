@@ -1,3 +1,5 @@
+use Ventas_dulceria;
+
 CREATE TABLE Empresas (
     id_empresa INT IDENTITY(1,1) NOT NULL,
     nombre_comercial VARCHAR(50) NOT NULL,

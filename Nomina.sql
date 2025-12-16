@@ -1,3 +1,4 @@
+use Ventas_dulceria;
 CREATE TABLE Nomina (
     id_nomina INT IDENTITY(1,1) NOT NULL,
     id_empresa INT NOT NULL,

@@ -1,3 +1,4 @@
+use Ventas_dulceria;
 CREATE TABLE Devoluciones (
     id_devolucion INT IDENTITY(1,1) NOT NULL,
 

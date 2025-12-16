@@ -1,3 +1,4 @@
+use Ventas_dulceria;
 CREATE TABLE Caja (
     id_caja INT IDENTITY(1,1) NOT NULL,
     id_empresa INT, -- Marcado como FK en el diagrama

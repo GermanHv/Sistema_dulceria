@@ -1,3 +1,4 @@
+use Ventas_dulceria;
 CREATE TABLE Clientes (
     id_cliente INT IDENTITY(1,1) NOT NULL,
 

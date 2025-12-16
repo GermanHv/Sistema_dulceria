@@ -1,3 +1,4 @@
+use Ventas_dulceria;
 CREATE TABLE Inventario (
     id_inventario INT IDENTITY(1,1) NOT NULL,
     id_categoria INT NOT NULL,

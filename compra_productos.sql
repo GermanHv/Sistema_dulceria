@@ -1,3 +1,4 @@
+use Ventas_dulceria;
 CREATE TABLE Compras (
     id_compra INT IDENTITY(1,1) NOT NULL,
     id_empresa INT NOT NULL,
