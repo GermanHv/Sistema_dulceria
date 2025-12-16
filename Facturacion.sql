@@ -23,8 +23,8 @@ CREATE TABLE Clientes (
 
     -- CONSTRAINTS
     CONSTRAINT PK_Clientes PRIMARY KEY (id_cliente),
-    CONSTRAINT FK_Clientes_Empresa FOREIGN KEY (id_empresa) REFERENCES Empresas(id_empresa),
-    CONSTRAINT FK_Clientes_Sucursal FOREIGN KEY (id_sucursal) REFERENCES Sucursales(id_sucursal),
+    -- CONSTRAINT FK_Clientes_Empresa FOREIGN KEY (id_empresa) REFERENCES Empresas(id_empresa),
+    -- CONSTRAINT FK_Clientes_Sucursal FOREIGN KEY (id_sucursal) REFERENCES Sucursales(id_sucursal),
     CONSTRAINT UQ_Correo_Cliente UNIQUE (correo)
 );
 
@@ -56,8 +56,8 @@ CREATE TABLE Facturacion_Clientes (
     -- CONSTRAINTS
     CONSTRAINT PK_Facturacion PRIMARY KEY (id_datos_facturacion),
     CONSTRAINT FK_Facturacion_Cliente FOREIGN KEY (id_cliente) REFERENCES Clientes(id_cliente),
-    CONSTRAINT FK_Facturacion_Empresa FOREIGN KEY (id_empresa) REFERENCES Empresas(id_empresa),
-    CONSTRAINT FK_Facturacion_Sucursal FOREIGN KEY (id_sucursal) REFERENCES Sucursales(id_sucursal)
+    -- CONSTRAINT FK_Facturacion_Empresa FOREIGN KEY (id_empresa) REFERENCES Empresas(id_empresa),
+    -- CONSTRAINT FK_Facturacion_Sucursal FOREIGN KEY (id_sucursal) REFERENCES Sucursales(id_sucursal)
 );
 
 CREATE TABLE Detallesfacturas (
@@ -96,11 +96,11 @@ CREATE TABLE Detallesfacturas (
     CONSTRAINT PK_DetallesFacturas PRIMARY KEY (id_factura),
     
     -- Importante: Conectar con Venta y Datos Fiscales
-    CONSTRAINT FK_Facturas_Venta FOREIGN KEY (id_venta) REFERENCES Ventas(id_venta),
+    -- CONSTRAINT FK_Facturas_Venta FOREIGN KEY (id_venta) REFERENCES Ventas(id_venta),
     CONSTRAINT FK_Facturas_Datos FOREIGN KEY (id_datos_facturacion) REFERENCES Facturacion_Clientes(id_datos_facturacion),
     
-    CONSTRAINT FK_Facturas_Empresa FOREIGN KEY (id_empresa) REFERENCES Empresas(id_empresa),
-    CONSTRAINT FK_Facturas_Sucursal FOREIGN KEY (id_sucursal) REFERENCES Sucursales(id_sucursal),
+    -- CONSTRAINT FK_Facturas_Empresa FOREIGN KEY (id_empresa) REFERENCES Empresas(id_empresa),
+    -- CONSTRAINT FK_Facturas_Sucursal FOREIGN KEY (id_sucursal) REFERENCES Sucursales(id_sucursal),
 
     -- Regla: Un UUID no se puede repetir jamás
     CONSTRAINT UQ_UUID_Factura UNIQUE (uuid)

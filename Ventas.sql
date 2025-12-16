@@ -10,9 +10,9 @@ CREATE TABLE Ventas (
     id_dpv INT NOT NULL,
     id_cupon INT NULL,   
 
+    folio_interno VARCHAR(50) NOT NULL,
     fecha DATE NOT NULL, 
     total_venta DECIMAL(10,2) NOT NULL, -- Dinero total del ticket
-    
     fecha_venta DATETIME DEFAULT GETDATE(),
 
     clave_usuario_u VARCHAR(50) NOT NULL, 
@@ -20,6 +20,9 @@ CREATE TABLE Ventas (
     Create_time TIME(0) DEFAULT CAST(GETDATE() AS TIME(0)),
 
     CONSTRAINT PK_Ventas PRIMARY KEY (id_venta),
+    -- 2. La regla de negocio:
+    -- "En la sucursal X, el folio Y solo puede existir una vez".
+    -- Esto permite que la Sucursal norte tenga el folio 'N001' y la Sucursal sur TAMBIÉN tenga el folio 'S001'.
     CONSTRAINT UQ_Folio_Sucursal UNIQUE (id_sucursal, folio_interno)
 );
 
